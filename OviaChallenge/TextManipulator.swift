@@ -56,36 +56,50 @@ extension TextManipulator {
         // first, separate string into array of words
         let words = text
             .components(separatedBy: " ")
+            // abbreviate each word (preserving punctuation)
             .map { component -> String in
                 abbreviateWithPunctuation(component)
             }
 
+        // re-join array into single string
         return words.joined(separator: " ")
     }
 
     // TODO: - doesn't handle front punctuation (e.g., quotation marks)
     private func abbreviateWithPunctuation(_ word: String) -> String {
+        // check that word is long enough to remove middle characters
         guard word.count > 2 else { return word }
-        let count = word.count - 2
+        // get count of middle characters (assuming all characters are alphanumeric)
+        var count = word.count - 2
 
+        // separate end punctuation from alphanumeric word
         var punctuation = ""
         var alpha = word
-        
+
+        // loop through reversed characters to check for end punctuation
         for char in alpha.unicodeScalars.reversed() {
             if CharacterType.punctuation.contains(char) {
+                // if end character is punctuation, add to punctuation string
                 punctuation.append(String(char))
+                // and remove from alphanumeric string
                 alpha = String(alpha.dropLast())
             } else {
+                // if next character is not punctuation, we've reached the end of end punctuation
                 break
             }
         }
 
         // make sure there are enough characters after removing punctuation
         guard alpha.count > 2 else { return word }
+        // get new count of middle characters (omitting punctuation)
+        count = alpha.count - 2
 
+        // get first and last alphanumeric characters for combined string
         guard let first = alpha.first,
             let last = alpha.last else { return word }
-        return "\(first)\(count)\(last)\(punctuation)"
+
+        // make sure to reverse punctuation to preserve order
+        return "\(first)\(count)\(last)\(String(punctuation.reversed()))"
     }
 }
 
