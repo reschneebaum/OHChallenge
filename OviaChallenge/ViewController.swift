@@ -13,17 +13,11 @@ class ViewController: UIViewController, TextManipulator {
     @IBOutlet private weak var textField: UITextField!
     @IBOutlet private weak var countLabel: UILabel!
     @IBOutlet private weak var abbreviateLabel: UILabel!
-    @IBOutlet private weak var clearButton: UIButton! {
-        didSet {
-            clearButton.isEnabled = false
-        }
-    }
-    
-    
+    @IBOutlet private weak var clearButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        textField.delegate = self
+        setup()
     }
 
     @IBAction func onClearTapped(_ sender: UIButton) {
@@ -44,15 +38,32 @@ extension ViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        onTextChange()
+        return true
+    }
+
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        onTextChange()
+    }
+}
+
+
+private extension ViewController {
+
+    func setup() {
+        clearButton.isEnabled = false
+        textField.delegate = self
+        textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+    }
+
+    func onTextChange() {
         guard let enteredText = textField.text else {
             clearButton.isEnabled = false
-            return true
+            return
         }
 
         clearButton.isEnabled = true
         countLabel.text = count(enteredText)
         abbreviateLabel.text = abbreviate(enteredText)
-
-        return true
     }
 }
