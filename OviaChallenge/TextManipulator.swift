@@ -69,18 +69,17 @@ extension TextManipulator {
     private func abbreviateWithPunctuation(_ word: String) -> String {
         // check that word is long enough to remove middle characters
         guard word.count > 2 else { return word }
-        // get count of middle characters (assuming all characters are alphanumeric)
-        var count = word.count - 2
 
         // separate end punctuation from alphanumeric word
-        var punctuation = ""
+        var endPunctuation = ""
+        var startPunctuation = ""
         var alpha = word
 
         // loop through reversed characters to check for end punctuation
         for char in alpha.unicodeScalars.reversed() {
             if CharacterType.punctuation.contains(char) {
                 // if end character is punctuation, add to punctuation string
-                punctuation.append(String(char))
+                endPunctuation.append(String(char))
                 // and remove from alphanumeric string
                 alpha = String(alpha.dropLast())
             } else {
@@ -89,17 +88,41 @@ extension TextManipulator {
             }
         }
 
+        // check if first and/or second characters are punctuation (e.g., quotation marks)
+        let startPunctResult = checkStartPunctuation(word: alpha)
+        startPunctuation = startPunctResult.punctuation
+        alpha = startPunctResult.alphanumeric
+
         // make sure there are enough characters after removing punctuation
         guard alpha.count > 2 else { return word }
-        // get new count of middle characters (omitting punctuation)
-        count = alpha.count - 2
+        // get count of middle (ommitted) characters (not counting punctuation)
+        let count = alpha.count - 2
 
         // get first and last alphanumeric characters for combined string
         guard let first = alpha.first,
             let last = alpha.last else { return word }
 
         // make sure to reverse punctuation to preserve order
-        return "\(first)\(count)\(last)\(String(punctuation.reversed()))"
+        return "\(startPunctuation)\(first)\(count)\(last)\(String(endPunctuation.reversed()))"
+    }
+
+    private func checkStartPunctuation(word: String, existingPunctuation: String? = nil) -> (punctuation: String, alphanumeric: String) {
+        var punct = existingPunctuation ?? ""
+        var alpha = word
+
+        // check if first character is punctuation (e.g., quotation mark)
+        if let first = alpha.unicodeScalars.first,
+            CharacterType.punctuation.contains(first) {
+            // if first letter is punctuation, add to startPunct and remove from alpha
+            punct.append(String(first))
+            alpha = String(alpha.dropFirst())
+
+            // only if first character is punctuation, check second (e.g., double quotes)
+            return checkStartPunctuation(word: alpha, existingPunctuation: punct)
+
+        } else {
+            return (punctuation: punct, alphanumeric: alpha)
+        }
     }
 }
 
