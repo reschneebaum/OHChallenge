@@ -17,43 +17,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Please enter text to be transformed..." textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="14" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="6w6-or-pFB">
-                                <rect key="frame" x="16" y="202" width="343" height="32"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Please enter text to be transformed..." textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="6w6-or-pFB">
+                                <rect key="frame" x="16" y="80" width="343" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="9QK-xh-EaX"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES" smartDashesType="no"/>
+                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done" smartDashesType="no"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJE-Mh-2uK">
-                                <rect key="frame" x="16" y="323" width="343" height="21"/>
+                                <rect key="frame" x="16" y="201" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The entered text has:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5to-74-ace">
-                                <rect key="frame" x="16" y="298" width="138" height="17"/>
+                                <rect key="frame" x="16" y="176" width="138" height="17"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Abbreviated:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D8r-eX-DW6">
-                                <rect key="frame" x="16" y="368" width="82.5" height="17"/>
+                                <rect key="frame" x="16" y="246" width="82.5" height="17"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2nw-JD-Zqd">
-                                <rect key="frame" x="16" y="393" width="343" height="21"/>
+                                <rect key="frame" x="16" y="271" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8j-4y-DJp">
-                                <rect key="frame" x="167" y="438" width="40" height="32"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                <state key="normal" title="Clear"/>
+                                <rect key="frame" x="260" y="120" width="83" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="ZO7-tt-fBc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                <state key="normal" title="clear all text"/>
                                 <connections>
                                     <action selector="onClearTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lov-bW-wFa"/>
                                 </connections>
@@ -61,22 +64,23 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="M8j-4y-DJp" firstAttribute="top" secondItem="2nw-JD-Zqd" secondAttribute="bottom" constant="24" id="7z5-FW-1xc"/>
                             <constraint firstItem="UJE-Mh-2uK" firstAttribute="top" secondItem="5to-74-ace" secondAttribute="bottom" constant="8" id="8BA-Ax-wQX"/>
-                            <constraint firstItem="UJE-Mh-2uK" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Kph-iH-vTS"/>
                             <constraint firstItem="UJE-Mh-2uK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="TCn-sC-mC7"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5to-74-ace" secondAttribute="trailing" constant="16" id="TVh-a6-Xmw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="D8r-eX-DW6" secondAttribute="trailing" constant="16" id="Tjv-VM-CiU"/>
+                            <constraint firstItem="M8j-4y-DJp" firstAttribute="top" secondItem="6w6-or-pFB" secondAttribute="bottom" constant="8" id="UpL-Ms-VGz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UJE-Mh-2uK" secondAttribute="trailing" constant="16" id="aT5-ac-UXF"/>
                             <constraint firstItem="6w6-or-pFB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="bZm-6T-rGM"/>
-                            <constraint firstItem="M8j-4y-DJp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cG5-lO-01b"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2nw-JD-Zqd" secondAttribute="trailing" constant="16" id="dJ0-lu-AVG"/>
                             <constraint firstItem="D8r-eX-DW6" firstAttribute="top" secondItem="UJE-Mh-2uK" secondAttribute="bottom" constant="24" id="efh-lK-hYy"/>
+                            <constraint firstItem="6w6-or-pFB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="epG-xI-e5Y"/>
                             <constraint firstItem="5to-74-ace" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="exy-1m-6Td"/>
                             <constraint firstItem="5to-74-ace" firstAttribute="top" secondItem="6w6-or-pFB" secondAttribute="bottom" constant="64" id="hoM-nh-WVf"/>
                             <constraint firstItem="2nw-JD-Zqd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="lxU-6f-fsY"/>
+                            <constraint firstItem="M8j-4y-DJp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="mcx-AA-2oU"/>
                             <constraint firstItem="2nw-JD-Zqd" firstAttribute="top" secondItem="D8r-eX-DW6" secondAttribute="bottom" constant="8" id="pGj-Ya-1HW"/>
                             <constraint firstItem="D8r-eX-DW6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="pXn-H9-PCZ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="M8j-4y-DJp" secondAttribute="trailing" constant="32" id="sBz-5f-8Ct"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6w6-or-pFB" secondAttribute="trailing" constant="16" id="ujD-V0-WDO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

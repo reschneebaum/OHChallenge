@@ -70,7 +70,7 @@ extension TextManipulator {
         // check that word is long enough to remove middle characters
         guard word.count > 2 else { return word }
 
-        // separate end punctuation from alphanumeric word
+        // separate start + end punctuation from alphanumeric word
         var endPunctuation = ""
         var startPunctuation = ""
         var alpha = word
@@ -91,7 +91,7 @@ extension TextManipulator {
         // check if first and/or second characters are punctuation (e.g., quotation marks)
         let startPunctResult = checkStartPunctuation(word: alpha)
         startPunctuation = startPunctResult.punctuation
-        alpha = startPunctResult.alphanumeric
+        alpha = startPunctResult.restOfWord
 
         // make sure there are enough characters after removing punctuation
         guard alpha.count > 2 else { return word }
@@ -106,7 +106,7 @@ extension TextManipulator {
         return "\(startPunctuation)\(first)\(count)\(last)\(String(endPunctuation.reversed()))"
     }
 
-    private func checkStartPunctuation(word: String, existingPunctuation: String? = nil) -> (punctuation: String, alphanumeric: String) {
+    private func checkStartPunctuation(word: String, existingPunctuation: String? = nil) -> (punctuation: String, restOfWord: String) {
         var punct = existingPunctuation ?? ""
         var alpha = word
 
@@ -121,7 +121,7 @@ extension TextManipulator {
             return checkStartPunctuation(word: alpha, existingPunctuation: punct)
 
         } else {
-            return (punctuation: punct, alphanumeric: alpha)
+            return (punctuation: punct, restOfWord: alpha)
         }
     }
 }

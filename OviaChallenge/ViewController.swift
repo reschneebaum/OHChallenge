@@ -23,6 +23,7 @@ class ViewController: UIViewController, TextManipulator {
     @IBAction func onClearTapped(_ sender: UIButton) {
         sender.isEnabled = false
 
+        textField.resignFirstResponder()
         textField.text = nil
         countLabel.text = nil
         abbreviateLabel.text = nil
