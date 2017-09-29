@@ -58,15 +58,14 @@ extension TextManipulator {
             .components(separatedBy: " ")
             // abbreviate each word (preserving punctuation)
             .map { component -> String in
-                abbreviateWithPunctuation(component)
+                abbreviateWithPunctuation(word: component)
             }
 
         // re-join array into single string
         return words.joined(separator: " ")
     }
 
-    // TODO: - doesn't handle front punctuation (e.g., quotation marks)
-    private func abbreviateWithPunctuation(_ word: String) -> String {
+    private func abbreviateWithPunctuation(word: String) -> String {
         // check that word is long enough to remove middle characters
         guard word.count > 2 else { return word }
 
